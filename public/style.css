@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+
+#choose_chapter{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+li{
+    width: 100px;
+}
