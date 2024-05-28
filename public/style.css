@@ -7,14 +7,54 @@
     box-sizing: border-box;
 }
 
+html{
+    color: white;
+    font-size: 16px;
+}
+
+body{
+    background-color: black;
+}
+
 #choose_chapter{
     display: grid;
+    gap: 8px;
+    padding: 20px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+
 li{
-    width: 25vw;
+    width: auto;
+    height: 40px;
     list-style-type: none;
+    border-radius: 2px;
     text-align: center;
-    background-color: antiquewhite;
+    font-size: 1.5rem;
+    background-color: rgb(77, 77, 77);
+}
+
+li:hover{
+    background-color: hsl(0, 0%, 26%);
+}
+
+.control{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+}
+
+#read{
+    padding: 30px;
+}
+
+button{
+    border-radius: 4px;
+    padding: 5px;
+    height: 40px;
+    width: 120px;
+    font-size: medium;
+    font-weight: bolder;
+    background-color: rgb(211, 182, 165);
 }
