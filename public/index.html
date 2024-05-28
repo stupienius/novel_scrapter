@@ -8,12 +8,22 @@
 </head>
 <body>
 
-    <div class="choose_book"></div>
-    <div class="choose_chapter" id="choose_chapter"></div>
-    <div class="content">
+    <div class="choose_book" id="choose_book"></div>
+    <ul class="choose_chapter" id="choose_chapter">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <div id="read">
         <h1>爬取結果</h1>
-        <button onclick="startScraping()">開始爬蟲</button>
         <div id="content"></div>
+        <div class="control">
+            <button class="pre">pre page</button>
+            <button class="next">next page</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
