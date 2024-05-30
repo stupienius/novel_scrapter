@@ -36,13 +36,18 @@ app.get('/content', async (req, res) => {
     const page = await browser.newPage();
     await page.goto(url);
 
-    const result = await page.evaluate(() => {
-        return document.querySelector(".content").innerHTML;
+    const data = await page.evaluate(() => {
+        const result =  document.querySelector(".content").innerHTML;
+        const next = document.querySelector(".next-chapter").href;
+        const pre = document.querySelector(".prev-chapter").href;
+        return {result,next,pre} ;
     });
+   
 
     await browser.close();
 
-    res.json({ content: result });
+    res.json({ content: data.result, pre: data.pre, next: data.next });
+
 });
 
 app.listen(port, () => {

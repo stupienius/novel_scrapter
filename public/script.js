@@ -1,4 +1,6 @@
 let model = 1;
+let prevChapter = "";
+let nextChapter = "";
 // changeModel(model);
 
 async function scrapeChaperHref() {
@@ -17,7 +19,7 @@ async function scrapeChaperHref() {
 }
 
 async function gotoPage(url) {
-    console.log("hellp");
+
     const response = await fetch(`/content?url=${encodeURIComponent(url)}`);
     const data = await response.json();
 
@@ -26,6 +28,17 @@ async function gotoPage(url) {
     } else {
         document.getElementById('content').innerText = `Error: ${data.error}`;
     }
+
+
+    console.log(data.next);
+    if(prevChapter === ""){
+        prevChapter = preLoad(data.next);
+    }
+    if(nextChapter === ""){
+        nextChapter = preLoad(data.pre);
+    }
+    
+    
     model = 2;
     changeModel(model);
 }
@@ -34,6 +47,7 @@ async function displayChapterList(){
     const choose_chapter = document.getElementById("choose_chapter");
     const links = await scrapeChaperHref();
     console.log(links);
+    choose_chapter.innerHTML = "";
     for(let i=0;i<links.length;i++){
         choose_chapter.innerHTML += `
         <li onclick="gotoPage('${links[i]}')">chapter${i}</li>
@@ -58,5 +72,16 @@ function changeModel(index){
         document.getElementById('choose_book').style.display = "none";
         document.getElementById('choose_chapter').style.display = "none";
         document.getElementById('read').style.display = "block";
+    }
+}
+
+async function preLoad(url){
+    const response = await fetch(`/content?url=${encodeURIComponent(url)}`);
+    const data = await response.json();
+
+    if (response.ok) {
+        return data.content;
+    } else {
+        return "null";
     }
 }
